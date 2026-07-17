@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HomeFeast Provider</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"PT Serif", serif;
+}
+
+body{
+background:#f7f7f7;
+}
+
+header{
+
+background:#e85d2d;
+color:white;
+padding:20px;
+
+}
+
+.container{
+
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:40px 0;
+
+}
+
+.provider{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+
+}
+
+.provider img{
+
+width:100%;
+height:400px;
+object-fit:cover;
+border-radius:15px;
+
+}
+
+h1{
+
+margin-bottom:10px;
+
+}
+
+.rating{
+
+color:#ff9800;
+font-size:22px;
+margin:15px 0;
+
+}
+
+.price{
+
+font-size:30px;
+font-weight:bold;
+margin:20px 0;
+
+}
+
+button{
+
+padding:15px 40px;
+background:#e85d2d;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#d44f21;
+
+}
+
+.menu{
+
+margin-top:60px;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+th,td{
+
+padding:15px;
+border-bottom:1px solid #ddd;
+
+}
+
+.review{
+
+margin-top:40px;
+padding:20px;
+background:white;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+}
+
+.back{
+
+display:inline-block;
+margin-top:40px;
+text-decoration:none;
+color:#e85d2d;
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2 id="providerName"></h2>
+
+</header>
+
+<div class="container">
+
+<div class="provider">
+
+<img id="providerImage">
+
+<div>
+
+<h1 id="providerCuisine"></h1>
+
+<div class="rating">
+
+⭐ <span id="providerRating"></span>
+
+</div>
+
+<p id="providerDistance"></p>
+
+<div class="price">
+
+₹<span id="providerPrice"></span>/Meal
+
+</div>
+
+<button onclick="alert('Subscription Started!')">
+
+Subscribe Now
+
+</button>
+
+</div>
+
+</div>
+
+<div class="menu">
+
+<h2>Today's Menu</h2>
+
+<table>
+
+<tr>
+
+<th>Dish</th>
+
+<th>Price</th>
+
+</tr>
+
+<tbody id="menuTable"></tbody>
+
+</table>
+
+</div>
+
+<div class="review">
+
+<h2>Customer Reviews</h2>
+
+<p>⭐⭐⭐⭐⭐ Amazing homemade food.</p>
+
+<p>⭐⭐⭐⭐ Fresh and hygienic.</p>
+
+<p>⭐⭐⭐⭐⭐ Worth every rupee.</p>
+
+</div>
+
+<a href="homefeast.html" class="back">
+
+← Back to Home
+
+</a>
+
+</div>
+
+<script>
+
+const providers={
+
+1:{
+
+name:"Maa's Kitchen",
+
+image:"img1.jpg",
+
+cuisine:"Bengali",
+
+distance:"1.2 km away",
+
+price:120,
+
+rating:4.8,
+
+menu:[
+
+["Veg Thali",120],
+
+["Paneer Curry",140],
+
+["Dal Rice",100],
+
+["Chapati Sabzi",90]
+
+]
+
+},
+
+2:{
+
+name:"Didi Tiffin",
+
+image:"img2.jpg",
+
+cuisine:"North Indian",
+
+distance:"2.0 km away",
+
+price:140,
+
+rating:4.6,
+
+menu:[
+
+["Rajma Rice",140],
+
+["Chicken Curry",180],
+
+["Paratha",80],
+
+["Dal Fry",100]
+
+]
+
+},
+
+3:{
+
+name:"Sharmila's Dabba",
+
+image:"img3.jpg",
+
+cuisine:"South Indian",
+
+distance:"3.1 km away",
+
+price:110,
+
+rating:4.9,
+
+menu:[
+
+["Idli",80],
+
+["Dosa",100],
+
+["Sambar Rice",110],
+
+["Lemon Rice",90]
+
+]
+
+},
+
+4:{
+
+name:"Ghar Ka Khana",
+
+image:"img4.jpg",
+
+cuisine:"North Indian",
+
+distance:"1.8 km away",
+
+price:160,
+
+rating:4.5,
+
+menu:[
+
+["Butter Chicken",220],
+
+["Roti",20],
+
+["Jeera Rice",120],
+
+["Dal Makhani",140]
+
+]
+
+},
+
+5:{
+
+name:"Rosogolla's Table",
+
+image:"img5.jpg",
+
+cuisine:"Bengali",
+
+distance:"2.6 km away",
+
+price:130,
+
+rating:4.7,
+
+menu:[
+
+["Fish Curry",180],
+
+["Veg Thali",130],
+
+["Rice",40],
+
+["Mishti Doi",60]
+
+]
+
+},
+
+6:{
+
+name:"Spice Route Tiffin",
+
+image:"images/provider6.jpg",
+
+cuisine:"North Indian",
+
+distance:"3.4 km away",
+
+price:145,
+
+rating:4.4,
+
+menu:[
+
+["Chole Bhature",140],
+
+["Paneer Butter Masala",180],
+
+["Naan",35],
+
+["Lassi",50]
+
+]
+
+}
+
+};
+
+const params=new URLSearchParams(window.location.search);
+
+const id=params.get("id");
+
+const p=providers[id];
+
+document.getElementById("providerName").innerHTML=p.name;
+document.getElementById("providerImage").src=p.image;
+document.getElementById("providerCuisine").innerHTML=p.cuisine;
+document.getElementById("providerDistance").innerHTML=p.distance;
+document.getElementById("providerPrice").innerHTML=p.price;
+document.getElementById("providerRating").innerHTML=p.rating;
+
+let rows="";
+
+p.menu.forEach(item=>{
+
+rows+=`
+
+<tr>
+
+<td>${item[0]}</td>
+
+<td>₹${item[1]}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("menuTable").innerHTML=rows;
+
+</script>
+
+</body>
+</html>
